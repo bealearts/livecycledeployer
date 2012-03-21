@@ -1,0 +1,1500 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://adobe.com/idp/services" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://adobe.com/idp/services" xmlns:intf="http://adobe.com/idp/services" xmlns:tns1="http://ws-i.org/profiles/basic/1.1/xsd" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--Generated for Adobe LiveCycle 9.0.0-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://adobe.com/idp/services" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://xml.apache.org/xml-soap"/>
+   <import namespace="http://ws-i.org/profiles/basic/1.1/xsd"/>
+   <element name="previewApplicationArchive">
+    <complexType>
+     <sequence>
+      <element maxOccurs="1" minOccurs="0" name="applicationArchiveByteArray" type="xsd:base64Binary"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="previewApplicationArchiveResponse">
+    <complexType>
+     <sequence>
+      <element name="applicationStatus" type="impl:ApplicationStatus"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ApplicationId">
+    <sequence>
+     <element name="applicationName" nillable="true" type="xsd:string"/>
+     <element name="id" type="xsd:long"/>
+    </sequence>
+   </complexType>
+   <complexType name="ApplicationIdImpl">
+    <complexContent>
+     <extension base="impl:ApplicationId">
+      <sequence>
+       <element name="majorVersion" type="xsd:int"/>
+       <element name="majorVersionSet" type="xsd:boolean"/>
+       <element name="minorVersion" type="xsd:int"/>
+       <element name="minorVersionSet" type="xsd:boolean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="MyMapOf_xsd_string_To_xsd_anyType_Item">
+    <sequence>
+     <element name="key" nillable="true" type="xsd:string"/>
+     <element name="value" nillable="true" type="xsd:anyType"/>
+    </sequence>
+   </complexType>
+   <complexType name="MyMapOf_xsd_string_To_xsd_anyType">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:MyMapOf_xsd_string_To_xsd_anyType_Item"/>
+    </sequence>
+   </complexType>
+   <complexType name="BLOB">
+    <sequence>
+     <element maxOccurs="1" minOccurs="0" name="contentType" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="binaryData" type="xsd:base64Binary"/>
+     <element maxOccurs="1" minOccurs="0" name="attachmentID" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="remoteURL" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="MTOM" type="xsd:base64Binary" xmime:expectedContentTypes="*/*" xmlns:xmime="http://www.w3.org/2005/05/xmlmime"/>
+     <element maxOccurs="1" minOccurs="0" name="swaRef" type="tns1:swaRef"/>
+     <element maxOccurs="1" minOccurs="0" name="attributes" type="impl:MyMapOf_xsd_string_To_xsd_anyType"/>
+    </sequence>
+   </complexType>
+   <complexType name="Archive">
+    <sequence>
+     <element name="document" nillable="true" type="impl:BLOB"/>
+     <element name="id" type="xsd:long"/>
+     <element name="name" nillable="true" type="xsd:string"/>
+     <element name="version" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArchiveImpl">
+    <complexContent>
+     <extension base="impl:Archive">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="Application">
+    <sequence>
+     <element name="applicationId" nillable="true" type="impl:ApplicationId"/>
+     <element name="archive" nillable="true" type="impl:Archive"/>
+     <element name="category" nillable="true" type="xsd:string"/>
+     <element name="componentId" nillable="true" type="xsd:string"/>
+     <element name="headMajorVersion" type="xsd:int"/>
+     <element name="headMinorVersion" type="xsd:int"/>
+     <element name="implementationVersion" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ApplicationImpl">
+    <complexContent>
+     <extension base="impl:Application">
+      <sequence>
+       <element name="applicationConfigurationUuid" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="MyArrayOf_xsd_anyType">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:anyType"/>
+    </sequence>
+   </complexType>
+   <complexType name="ApplicationStatus">
+    <sequence>
+     <element name="application" nillable="true" type="impl:Application"/>
+     <element name="applicationArchive" nillable="true" type="impl:Archive"/>
+     <element name="archiveDocument" nillable="true" type="impl:BLOB"/>
+     <element name="errorName" nillable="true" type="xsd:string"/>
+     <element name="errorString" nillable="true" type="xsd:string"/>
+     <element name="statusCode" type="xsd:int"/>
+     <element name="statusList" nillable="true" type="impl:MyArrayOf_xsd_anyType"/>
+    </sequence>
+   </complexType>
+   <element name="ApplicationManagerException" type="xsd:anyType"/>
+   <element name="previewApplicationArchiveDocument">
+    <complexType>
+     <sequence>
+      <element maxOccurs="1" minOccurs="0" name="applicationArchiveDocument" type="impl:BLOB"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="previewApplicationArchiveDocumentResponse">
+    <complexType>
+     <sequence>
+      <element name="applicationStatus" type="impl:ApplicationStatus"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="importApplicationArchive">
+    <complexType>
+     <sequence>
+      <element maxOccurs="1" minOccurs="0" name="applicationArchiveByteArray" type="xsd:base64Binary"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="importApplicationArchiveResponse">
+    <complexType>
+     <sequence>
+      <element name="applicationStatus" type="impl:ApplicationStatus"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="importApplicationArchiveDocument">
+    <complexType>
+     <sequence>
+      <element maxOccurs="1" minOccurs="0" name="applicationArchiveDocument" type="impl:BLOB"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="importApplicationArchiveDocumentResponse">
+    <complexType>
+     <sequence>
+      <element name="applicationStatus" type="impl:ApplicationStatus"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="importApplicationArchiveDocumentWithImportApplicationInfo">
+    <complexType>
+     <sequence>
+      <element maxOccurs="1" minOccurs="0" name="applicationArchiveDocument" type="impl:BLOB"/>
+      <element maxOccurs="1" minOccurs="0" name="importApplicationInfo" type="impl:ImportApplicationInfo"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ImportApplicationInfo">
+    <sequence>
+     <element name="archiveSettingsDocument" nillable="true" type="impl:BLOB"/>
+     <element name="importParams" nillable="true" type="apachesoap:Map"/>
+     <element name="overwrite" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <element name="importApplicationArchiveDocumentWithImportApplicationInfoResponse">
+    <complexType>
+     <sequence>
+      <element name="applicationStatus" type="impl:ApplicationStatus"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="removeApplication">
+    <complexType>
+     <sequence>
+      <element maxOccurs="1" minOccurs="0" name="applicationId" type="impl:ApplicationId"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="removeApplicationResponse">
+    <complexType>
+     <sequence>
+      <element name="applicationStatus" type="impl:ApplicationStatus"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="ApplicationNotFoundException" type="xsd:anyType"/>
+   <element name="getApplicationStatus">
+    <complexType>
+     <sequence>
+      <element maxOccurs="1" minOccurs="0" name="applicationId" type="impl:ApplicationId"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getApplicationStatusResponse">
+    <complexType>
+     <sequence>
+      <element name="applicationStatus" type="impl:ApplicationStatus"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getApplication">
+    <complexType>
+     <sequence>
+      <element maxOccurs="1" minOccurs="0" name="applicationId" type="impl:ApplicationId"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getApplicationResponse">
+    <complexType>
+     <sequence>
+      <element name="application" type="impl:Application"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getApplications">
+    <complexType/>
+   </element>
+   <element name="getApplicationsResponse">
+    <complexType>
+     <sequence>
+      <element name="list" type="impl:MyArrayOfApplication"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="MyArrayOfApplication">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:Application"/>
+    </sequence>
+   </complexType>
+   <element name="getApplicationsSubset">
+    <complexType>
+     <sequence>
+      <element maxOccurs="1" minOccurs="0" name="offset" type="xsd:int"/>
+      <element maxOccurs="1" minOccurs="0" name="size" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getApplicationsSubsetResponse">
+    <complexType>
+     <sequence>
+      <element name="list" type="impl:MyArrayOf_xsd_anyType"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ApplicationStatusImpl">
+    <complexContent>
+     <extension base="impl:ApplicationStatus">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ApplicationStore">
+    <sequence>
+     <element name="applications" nillable="true" type="impl:MyArrayOf_xsd_anyType"/>
+    </sequence>
+   </complexType>
+   <complexType name="MyArrayOf_xsd_boolean">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="DATE">
+    <sequence>
+     <element maxOccurs="1" minOccurs="0" name="date" type="xsd:dateTime"/>
+     <element maxOccurs="1" minOccurs="0" name="calendar" type="xsd:dateTime"/>
+    </sequence>
+   </complexType>
+   <complexType name="MyArrayOf_xsd_double">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:double"/>
+    </sequence>
+   </complexType>
+   <complexType name="MyArrayOf_xsd_float">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:float"/>
+    </sequence>
+   </complexType>
+   <complexType name="MyArrayOf_xsd_int">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="MyArrayOf_xsd_long">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:long"/>
+    </sequence>
+   </complexType>
+   <complexType name="MyArrayOf_xsd_short">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:short"/>
+    </sequence>
+   </complexType>
+   <complexType name="SimpleValue">
+    <sequence>
+     <element name="array" type="xsd:boolean"/>
+     <element name="bigDecimalArray" nillable="true" type="impl:MyArrayOf_xsd_anyType"/>
+     <element name="bigDecimalValue" nillable="true" type="xsd:decimal"/>
+     <element name="booleanArray" nillable="true" type="impl:MyArrayOf_xsd_boolean"/>
+     <element name="booleanValue" type="xsd:boolean"/>
+     <element name="byteArray" nillable="true" type="xsd:base64Binary"/>
+     <element name="dateArray" nillable="true" type="impl:MyArrayOf_xsd_anyType"/>
+     <element name="dateTimeValue" nillable="true" type="impl:DATE"/>
+     <element name="dateValue" nillable="true" type="impl:DATE"/>
+     <element name="doubleArray" nillable="true" type="impl:MyArrayOf_xsd_double"/>
+     <element name="doubleValue" type="xsd:double"/>
+     <element name="floatArray" nillable="true" type="impl:MyArrayOf_xsd_float"/>
+     <element name="floatValue" type="xsd:float"/>
+     <element name="integerArray" nillable="true" type="impl:MyArrayOf_xsd_int"/>
+     <element name="integerValue" type="xsd:int"/>
+     <element name="longArray" nillable="true" type="impl:MyArrayOf_xsd_long"/>
+     <element name="longValue" type="xsd:long"/>
+     <element name="null" type="xsd:boolean"/>
+     <element name="object" nillable="true" type="xsd:anyType"/>
+     <element name="shortArray" nillable="true" type="impl:MyArrayOf_xsd_short"/>
+     <element name="shortValue" type="xsd:short"/>
+     <element name="stringArray" nillable="true" type="impl:MyArrayOf_xsd_anyType"/>
+     <element name="stringValue" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="POFKey">
+    <sequence>
+     <element name="attributes" nillable="true" type="impl:MyArrayOf_xsd_anyType"/>
+     <element name="null" type="xsd:boolean"/>
+     <element name="singleValue" nillable="true" type="impl:SimpleValue"/>
+    </sequence>
+   </complexType>
+   <complexType name="POFSchemaResolver">
+    <sequence>
+     <element name="domains" nillable="true" type="impl:MyArrayOf_xsd_anyType"/>
+     <element name="objectTypes" nillable="true" type="impl:MyArrayOf_xsd_anyType"/>
+    </sequence>
+   </complexType>
+   <complexType name="POFLocale">
+    <sequence>
+     <element name="country" nillable="true" type="xsd:string"/>
+     <element name="dateFormat" nillable="true" type="xsd:string"/>
+     <element name="dateTimeFormat" nillable="true" type="xsd:string"/>
+     <element name="default" type="xsd:boolean"/>
+     <element name="description" nillable="true" type="xsd:string"/>
+     <element name="language" nillable="true" type="xsd:string"/>
+     <element name="numberFormat" nillable="true" type="xsd:string"/>
+     <element name="variant" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="POFTimeZone">
+    <sequence>
+     <element name="ID" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="POFEnvironment">
+    <sequence>
+     <element name="defaultLOBBufferSize" type="xsd:int"/>
+     <element name="defaultLocale" nillable="true" type="impl:POFLocale"/>
+     <element name="locales" nillable="true" type="impl:MyArrayOf_xsd_anyType"/>
+     <element name="resourceOwner" nillable="true" type="xsd:string"/>
+     <element name="timeZone" nillable="true" type="impl:POFTimeZone"/>
+     <element name="useDataSourceSystemDate" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="POFObjectResolver">
+    <complexContent>
+     <extension base="impl:POFSchemaResolver">
+      <sequence>
+       <element name="environment" nillable="true" type="impl:POFEnvironment"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ObjectTypeConstants">
+    <sequence/>
+   </complexType>
+   <complexType name="POFObjectType">
+    <complexContent>
+     <extension base="impl:ObjectTypeConstants">
+      <sequence>
+       <element name="attributes" nillable="true" type="impl:MyArrayOf_xsd_anyType"/>
+       <element name="cacheInterval" type="xsd:int"/>
+       <element name="createTime" nillable="true" type="impl:DATE"/>
+       <element name="databaseTable" nillable="true" type="xsd:string"/>
+       <element name="deletionCriteria" nillable="true" type="xsd:string"/>
+       <element name="description" nillable="true" type="xsd:string"/>
+       <element name="domainId" nillable="true" type="xsd:string"/>
+       <element name="id" type="xsd:int"/>
+       <element name="indexes" nillable="true" type="impl:MyArrayOf_xsd_anyType"/>
+       <element name="javaClass" nillable="true" type="xsd:string"/>
+       <element name="localAttributes" nillable="true" type="impl:MyArrayOf_xsd_anyType"/>
+       <element name="localIndexes" nillable="true" type="impl:MyArrayOf_xsd_anyType"/>
+       <element name="localRelations" nillable="true" type="impl:MyArrayOf_xsd_anyType"/>
+       <element name="logEventOnDelete" type="xsd:boolean"/>
+       <element name="logEventOnInsert" type="xsd:boolean"/>
+       <element name="logEventOnUpdate" type="xsd:boolean"/>
+       <element name="name" nillable="true" type="xsd:string"/>
+       <element name="primaryAndLocalAttributes" nillable="true" type="impl:MyArrayOf_xsd_anyType"/>
+       <element name="primaryKeys" nillable="true" type="impl:MyArrayOf_xsd_anyType"/>
+       <element name="proxyObjectTypes" nillable="true" type="impl:MyArrayOf_xsd_anyType"/>
+       <element name="quotedIdentifier" type="xsd:boolean"/>
+       <element name="relations" nillable="true" type="impl:MyArrayOf_xsd_anyType"/>
+       <element name="schemaResolver" nillable="true" type="impl:POFSchemaResolver"/>
+       <element name="serialVersionUID" type="xsd:long"/>
+       <element name="title" nillable="true" type="xsd:string"/>
+       <element name="type" type="xsd:int"/>
+       <element name="updateTime" nillable="true" type="impl:DATE"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="GenericObject">
+    <sequence>
+     <element name="deleteOnWrite" type="xsd:boolean"/>
+     <element name="deleted" type="xsd:boolean"/>
+     <element name="dirty" type="xsd:boolean"/>
+     <element name="key" nillable="true" type="impl:POFKey"/>
+     <element name="new" type="xsd:boolean"/>
+     <element name="null" nillable="true" type="xsd:string"/>
+     <element name="objectResolver" nillable="true" type="impl:POFObjectResolver"/>
+     <element name="objectType" nillable="true" type="impl:POFObjectType"/>
+     <element name="proxy" type="xsd:boolean"/>
+     <element name="referenceMods" nillable="true" type="impl:MyArrayOf_xsd_anyType"/>
+    </sequence>
+   </complexType>
+   <complexType name="BOIObject">
+    <sequence>
+     <element name="POFKey" nillable="true" type="impl:POFKey"/>
+     <element name="POFObjectResolver" nillable="true" type="impl:POFObjectResolver"/>
+     <element name="POFObjectType" nillable="true" type="impl:POFObjectType"/>
+     <element name="deleted" type="xsd:boolean"/>
+     <element name="dirty" type="xsd:boolean"/>
+     <element name="genericObject" nillable="true" type="impl:GenericObject"/>
+     <element name="new" type="xsd:boolean"/>
+     <element name="proxy" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="AbstractBOIObject">
+    <complexContent>
+     <extension base="impl:BOIObject">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="Reader">
+    <sequence/>
+   </complexType>
+   <complexType name="Writer">
+    <sequence/>
+   </complexType>
+   <complexType name="BOIComponentBase">
+    <complexContent>
+     <extension base="impl:AbstractBOIObject">
+      <sequence>
+       <element name="archiveOid" type="xsd:long"/>
+       <element name="createTime" nillable="true" type="impl:DATE"/>
+       <element name="dataTypes" nillable="true" type="impl:MyArrayOf_xsd_anyType"/>
+       <element name="descriptor" nillable="true" type="xsd:string"/>
+       <element name="descriptorReader" nillable="true" type="impl:Reader"/>
+       <element name="descriptorWriter" nillable="true" type="impl:Writer"/>
+       <element name="id" nillable="true" type="xsd:string"/>
+       <element name="oid" type="xsd:long"/>
+       <element name="propertyEditors" nillable="true" type="impl:MyArrayOf_xsd_anyType"/>
+       <element name="serviceConfigurations" nillable="true" type="impl:MyArrayOf_xsd_anyType"/>
+       <element name="state" type="xsd:short"/>
+       <element name="updateTime" nillable="true" type="impl:DATE"/>
+       <element name="version" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="BOIComponent">
+    <complexContent>
+     <extension base="impl:BOIComponentBase">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ApplicationStoreImpl">
+    <complexContent>
+     <extension base="impl:ApplicationStore">
+      <sequence>
+       <element name="applicationManagerComponentBOI" nillable="true" type="impl:BOIComponent"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ApplicationComponent">
+    <sequence>
+     <element name="archiveLocalPath" nillable="true" type="xsd:string"/>
+     <element name="description" nillable="true" type="xsd:string"/>
+     <element name="setDescription" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="ApplicationComponentImpl">
+    <complexContent>
+     <extension base="impl:ApplicationComponent">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="Component">
+    <complexContent>
+     <extension base="impl:ApplicationComponent">
+      <sequence>
+       <element name="name" nillable="true" type="xsd:string"/>
+       <element name="version" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ComponentImpl">
+    <complexContent>
+     <extension base="impl:Component">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ApplicationDocument_Application_Components">
+    <sequence>
+     <element maxOccurs="unbounded" name="componentArray" nillable="true" type="impl:Component"/>
+    </sequence>
+   </complexType>
+   <complexType name="Event">
+    <complexContent>
+     <extension base="impl:ApplicationComponent">
+      <sequence>
+       <element name="category" nillable="true" type="xsd:string"/>
+       <element name="name" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="EventImpl">
+    <complexContent>
+     <extension base="impl:Event">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ApplicationDocument_Application_Events">
+    <sequence>
+     <element maxOccurs="unbounded" name="eventArray" nillable="true" type="impl:Event"/>
+    </sequence>
+   </complexType>
+   <complexType name="Orchestration">
+    <complexContent>
+     <extension base="impl:ApplicationComponent">
+      <sequence>
+       <element name="categoryDescription" nillable="true" type="xsd:string"/>
+       <element name="categoryId" nillable="true" type="xsd:string"/>
+       <element name="id" nillable="true" type="xsd:string"/>
+       <element name="majorVersion" type="xsd:short"/>
+       <element name="minorVersion" type="xsd:short"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="OrchestrationImpl">
+    <complexContent>
+     <extension base="impl:Orchestration">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ApplicationDocument_Application_Orchestrations">
+    <sequence>
+     <element maxOccurs="unbounded" name="orchestrationArray" nillable="true" type="impl:Orchestration"/>
+    </sequence>
+   </complexType>
+   <complexType name="EndpointType">
+    <sequence>
+     <element name="id" nillable="true" type="xsd:string"/>
+     <element name="logicalId" nillable="true" type="xsd:string"/>
+     <element name="path" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="RelationshipType">
+    <sequence>
+     <element name="sourceEndpoint" nillable="true" type="impl:EndpointType"/>
+     <element name="targetEndpoint" nillable="true" type="impl:EndpointType"/>
+     <element name="type" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="Relationships">
+    <sequence>
+     <element maxOccurs="unbounded" name="relationshipArray" nillable="true" type="impl:RelationshipType"/>
+    </sequence>
+   </complexType>
+   <complexType name="ResourcePropertyType">
+    <sequence>
+     <element name="name" nillable="true" type="xsd:string"/>
+     <element name="namespace" nillable="true" type="xsd:string"/>
+     <element name="value" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ResourceProperties">
+    <sequence>
+     <element maxOccurs="unbounded" name="resourcePropertyArray" nillable="true" type="impl:ResourcePropertyType"/>
+    </sequence>
+   </complexType>
+   <complexType name="Resource">
+    <complexContent>
+     <extension base="impl:ApplicationComponent">
+      <sequence>
+       <element maxOccurs="unbounded" name="archiveLocalPathArray" nillable="true" type="xsd:string"/>
+       <element name="dependent" nillable="true" type="xsd:string"/>
+       <element name="id" nillable="true" type="xsd:string"/>
+       <element name="path" nillable="true" type="xsd:string"/>
+       <element name="relationships" nillable="true" type="impl:Relationships"/>
+       <element name="resourceProperties" nillable="true" type="impl:ResourceProperties"/>
+       <element name="resourceUri" nillable="true" type="xsd:string"/>
+       <element name="setRelationships" type="xsd:boolean"/>
+       <element name="setResourceProperties" type="xsd:boolean"/>
+       <element name="timestamp" type="xsd:long"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ResourceImpl">
+    <complexContent>
+     <extension base="impl:Resource">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ApplicationDocument_Application_Resources">
+    <sequence>
+     <element maxOccurs="unbounded" name="resourceArray" nillable="true" type="impl:Resource"/>
+    </sequence>
+   </complexType>
+   <complexType name="PropertyEditorType_Parameter">
+    <sequence>
+     <element name="name" nillable="true" type="xsd:string"/>
+     <element name="setName" type="xsd:boolean"/>
+     <element name="setValue" type="xsd:boolean"/>
+     <element name="value" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="PropertyEditorType">
+    <sequence>
+     <element name="editorId" nillable="true" type="xsd:string"/>
+     <element maxOccurs="unbounded" name="parameterArray" nillable="true" type="impl:PropertyEditorType_Parameter"/>
+     <element name="setEditorId" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="ConfigParameterType">
+    <sequence>
+     <element name="description" nillable="true" type="xsd:string"/>
+     <element name="hint" nillable="true" type="xsd:string"/>
+     <element name="name" nillable="true" type="xsd:string"/>
+     <element name="property" nillable="true" type="xsd:string"/>
+     <element name="propertyEditor" nillable="true" type="impl:PropertyEditorType"/>
+     <element name="required" type="xsd:boolean"/>
+     <element name="setDescription" type="xsd:boolean"/>
+     <element name="setHint" type="xsd:boolean"/>
+     <element name="setProperty" type="xsd:boolean"/>
+     <element name="setPropertyEditor" type="xsd:boolean"/>
+     <element name="setRequired" type="xsd:boolean"/>
+     <element name="setTitle" type="xsd:boolean"/>
+     <element name="setType" type="xsd:boolean"/>
+     <element name="setValue" type="xsd:boolean"/>
+     <element name="title" nillable="true" type="xsd:string"/>
+     <element name="type" nillable="true" type="xsd:string"/>
+     <element name="value" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="PoolConfigurationType">
+    <sequence>
+     <element name="initialInstances" nillable="true" type="xsd:string"/>
+     <element name="maxAsynchInstances" nillable="true" type="xsd:string"/>
+     <element name="maxInstances" nillable="true" type="xsd:string"/>
+     <element name="maxWait" nillable="true" type="xsd:string"/>
+     <element name="setInitialInstances" type="xsd:boolean"/>
+     <element name="setMaxAsynchInstances" type="xsd:boolean"/>
+     <element name="setMaxInstances" type="xsd:boolean"/>
+     <element name="setMaxWait" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="RunAsUserType">
+    <sequence>
+     <element name="canonicalName" nillable="true" type="xsd:string"/>
+     <element name="commonName" nillable="true" type="xsd:string"/>
+     <element name="domainName" nillable="true" type="xsd:string"/>
+     <element name="email" nillable="true" type="xsd:string"/>
+     <element name="runasConfiguration" nillable="true" type="xsd:string"/>
+     <element name="setCommonName" type="xsd:boolean"/>
+     <element name="setEmail" type="xsd:boolean"/>
+     <element name="setRunasConfiguration" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="ServiceConfiguration">
+    <sequence>
+     <element maxOccurs="unbounded" name="configParameterArray" nillable="true" type="impl:ConfigParameterType"/>
+     <element name="descriptor" nillable="true" type="xsd:string"/>
+     <element name="lockedByUser" nillable="true" type="xsd:string"/>
+     <element name="majorVersion" type="xsd:short"/>
+     <element name="minorVersion" type="xsd:short"/>
+     <element name="monitor" type="xsd:boolean"/>
+     <element name="orchestrateable" type="xsd:boolean"/>
+     <element name="poolConfiguration" nillable="true" type="impl:PoolConfigurationType"/>
+     <element name="runAsConfiguration" nillable="true" type="impl:RunAsUserType"/>
+     <element name="setDescriptor" type="xsd:boolean"/>
+     <element name="setLockedByUser" type="xsd:boolean"/>
+     <element name="setMajorVersion" type="xsd:boolean"/>
+     <element name="setMinorVersion" type="xsd:boolean"/>
+     <element name="setMonitor" type="xsd:boolean"/>
+     <element name="setOrchestrateable" type="xsd:boolean"/>
+     <element name="setPoolConfiguration" type="xsd:boolean"/>
+     <element name="setRunAsConfiguration" type="xsd:boolean"/>
+     <element name="setStartWithComponent" type="xsd:boolean"/>
+     <element name="setState" type="xsd:boolean"/>
+     <element name="setType" type="xsd:boolean"/>
+     <element name="startWithComponent" type="xsd:boolean"/>
+     <element name="state" type="xsd:int"/>
+     <element name="type" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Service_Configurations">
+    <sequence>
+     <element maxOccurs="unbounded" name="configurationArray" nillable="true" type="impl:ServiceConfiguration"/>
+    </sequence>
+   </complexType>
+   <complexType name="EndpointCategory">
+    <sequence>
+     <element name="description" nillable="true" type="xsd:string"/>
+     <element name="id" nillable="true" type="xsd:string"/>
+     <element name="setDescription" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="InputMapping">
+    <sequence>
+     <element name="paramName" nillable="true" type="xsd:string"/>
+     <element name="paramType" nillable="true" type="xsd:string"/>
+     <element name="type" nillable="true" type="xsd:string"/>
+     <element name="value" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="OutputMapping">
+    <sequence>
+     <element name="dataType" nillable="true" type="xsd:string"/>
+     <element name="paramName" nillable="true" type="xsd:string"/>
+     <element name="value" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Endpoint">
+    <sequence>
+     <element name="category" nillable="true" type="impl:EndpointCategory"/>
+     <element maxOccurs="unbounded" name="configParameterArray" nillable="true" type="impl:ConfigParameterType"/>
+     <element name="connectorId" nillable="true" type="xsd:string"/>
+     <element name="description" nillable="true" type="xsd:string"/>
+     <element name="enabled" type="xsd:boolean"/>
+     <element maxOccurs="unbounded" name="inputMappingsArray" nillable="true" type="impl:InputMapping"/>
+     <element name="name" nillable="true" type="xsd:string"/>
+     <element name="operationName" nillable="true" type="xsd:string"/>
+     <element maxOccurs="unbounded" name="outputMappingsArray" nillable="true" type="impl:OutputMapping"/>
+     <element name="serviceId" nillable="true" type="xsd:string"/>
+     <element name="setCategory" type="xsd:boolean"/>
+     <element name="setDescription" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="Service_Endpoints">
+    <sequence>
+     <element maxOccurs="unbounded" name="endpointArray" nillable="true" type="impl:Endpoint"/>
+    </sequence>
+   </complexType>
+   <complexType name="SecurityProfile">
+    <sequence>
+     <element name="canonicalName" nillable="true" type="xsd:string"/>
+     <element name="commonName" nillable="true" type="xsd:string"/>
+     <element name="domainName" nillable="true" type="xsd:string"/>
+     <element name="email" nillable="true" type="xsd:string"/>
+     <element name="permissionName" nillable="true" type="xsd:string"/>
+     <element name="principalType" nillable="true" type="xsd:string"/>
+     <element name="serviceId" nillable="true" type="xsd:string"/>
+     <element name="setCommonName" type="xsd:boolean"/>
+     <element name="setEmail" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="Service_SecurityProfiles">
+    <sequence>
+     <element maxOccurs="unbounded" name="securityProfileArray" nillable="true" type="impl:SecurityProfile"/>
+    </sequence>
+   </complexType>
+   <complexType name="XmlTokenSource">
+    <sequence/>
+   </complexType>
+   <complexType name="XmlObject">
+    <complexContent>
+     <extension base="impl:XmlTokenSource">
+      <sequence>
+       <element name="immutable" type="xsd:boolean"/>
+       <element name="nil" type="xsd:boolean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ServiceImpl">
+    <complexContent>
+     <extension base="impl:Service">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="Service">
+    <complexContent>
+     <extension base="impl:ApplicationComponent">
+      <sequence>
+       <element name="anonymousOveride" type="xsd:boolean"/>
+       <element name="configurations" nillable="true" type="impl:Service_Configurations"/>
+       <element name="endpoints" nillable="true" type="impl:Service_Endpoints"/>
+       <element name="headConfiguration" nillable="true" type="impl:ServiceConfiguration"/>
+       <element name="id" nillable="true" type="xsd:string"/>
+       <element name="securityEnabled" type="xsd:boolean"/>
+       <element name="securityProfiles" nillable="true" type="impl:Service_SecurityProfiles"/>
+       <element name="serviceCategory" nillable="true" type="impl:XmlObject"/>
+       <element name="setAnonymousOveride" type="xsd:boolean"/>
+       <element name="setConfigurations" type="xsd:boolean"/>
+       <element name="setEndpoints" type="xsd:boolean"/>
+       <element name="setHeadConfiguration" type="xsd:boolean"/>
+       <element name="setSecurityEnabled" type="xsd:boolean"/>
+       <element name="setSecurityProfiles" type="xsd:boolean"/>
+       <element name="setServiceCategory" type="xsd:boolean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ApplicationDocument_Application_Services">
+    <sequence>
+     <element maxOccurs="unbounded" name="serviceArray" nillable="true" type="impl:Service"/>
+    </sequence>
+   </complexType>
+   <complexType name="ApplicationDocument_Application">
+    <sequence>
+     <element name="components" nillable="true" type="impl:ApplicationDocument_Application_Components"/>
+     <element name="description" nillable="true" type="xsd:string"/>
+     <element name="events" nillable="true" type="impl:ApplicationDocument_Application_Events"/>
+     <element name="implementationVersion" nillable="true" type="xsd:string"/>
+     <element name="name" nillable="true" type="xsd:string"/>
+     <element name="orchestrations" nillable="true" type="impl:ApplicationDocument_Application_Orchestrations"/>
+     <element name="resources" nillable="true" type="impl:ApplicationDocument_Application_Resources"/>
+     <element name="rootOrchestration" nillable="true" type="xsd:string"/>
+     <element name="services" nillable="true" type="impl:ApplicationDocument_Application_Services"/>
+     <element name="setComponents" type="xsd:boolean"/>
+     <element name="setEvents" type="xsd:boolean"/>
+     <element name="setImplementationVersion" type="xsd:boolean"/>
+     <element name="setOrchestrations" type="xsd:boolean"/>
+     <element name="setResources" type="xsd:boolean"/>
+     <element name="setServices" type="xsd:boolean"/>
+     <element name="setTimestamp" type="xsd:boolean"/>
+     <element name="timestamp" nillable="true" type="impl:DATE"/>
+    </sequence>
+   </complexType>
+   <complexType name="ApplicationDocument">
+    <sequence>
+     <element name="application" nillable="true" type="impl:ApplicationDocument_Application"/>
+    </sequence>
+   </complexType>
+   <complexType name="ApplicationDocumentImpl">
+    <complexContent>
+     <extension base="impl:ApplicationDocument">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="Status">
+    <sequence>
+     <element name="TLOType" nillable="true" type="xsd:string"/>
+     <element name="applicationComponentType" type="xsd:int"/>
+     <element name="description" nillable="true" type="xsd:string"/>
+     <element name="errorMessage" nillable="true" type="xsd:string"/>
+     <element name="name" nillable="true" type="xsd:string"/>
+     <element name="properties" nillable="true" type="apachesoap:Map"/>
+     <element name="statusCode" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="StatusImpl">
+    <complexContent>
+     <extension base="impl:Status">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ExportStatus">
+    <complexContent>
+     <extension base="impl:Status">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ExportStatusImpl">
+    <complexContent>
+     <extension base="impl:ExportStatus">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ImportStatus">
+    <complexContent>
+     <extension base="impl:Status">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="RollbackContext">
+    <sequence>
+     <element name="applicationComponent" nillable="true" type="impl:ApplicationComponent"/>
+     <element name="applicationComponentGuid" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ImportStatusImpl">
+    <complexContent>
+     <extension base="impl:ImportStatus">
+      <sequence>
+       <element name="rollbackContext" nillable="true" type="impl:RollbackContext"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="PreviewStatus">
+    <complexContent>
+     <extension base="impl:Status">
+      <sequence>
+       <element name="action" type="xsd:int"/>
+       <element name="risk" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="PreviewStatusImpl">
+    <complexContent>
+     <extension base="impl:PreviewStatus">
+      <sequence>
+       <element name="existingDependencies" type="xsd:boolean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="RemoveStatus">
+    <complexContent>
+     <extension base="impl:Status">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="RemoveStatusImpl">
+    <complexContent>
+     <extension base="impl:RemoveStatus">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://ws-i.org/profiles/basic/1.1/xsd" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://adobe.com/idp/services"/>
+   <import namespace="http://xml.apache.org/xml-soap"/>
+   <simpleType name="swaRef">
+    <restriction base="xsd:anyURI"/>
+   </simpleType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://xml.apache.org/xml-soap" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://adobe.com/idp/services"/>
+   <import namespace="http://ws-i.org/profiles/basic/1.1/xsd"/>
+   <complexType name="Vector">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:anyType"/>
+    </sequence>
+   </complexType>
+   <complexType name="mapItem">
+    <sequence>
+     <element name="key" nillable="true" type="xsd:anyType"/>
+     <element name="value" nillable="true" type="xsd:anyType"/>
+    </sequence>
+   </complexType>
+   <complexType name="Map">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="apachesoap:mapItem"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="previewApplicationArchiveDocumentResponse">
+
+      <wsdl:part element="impl:previewApplicationArchiveDocumentResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="importApplicationArchiveDocumentResponse">
+
+      <wsdl:part element="impl:importApplicationArchiveDocumentResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ApplicationManagerException">
+
+      <wsdl:part element="impl:ApplicationManagerException" name="ApplicationManagerException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="previewApplicationArchiveDocumentRequest">
+
+      <wsdl:part element="impl:previewApplicationArchiveDocument" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="importApplicationArchiveDocumentWithImportApplicationInfoResponse">
+
+      <wsdl:part element="impl:importApplicationArchiveDocumentWithImportApplicationInfoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getApplicationsSubsetRequest">
+
+      <wsdl:part element="impl:getApplicationsSubset" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="importApplicationArchiveRequest">
+
+      <wsdl:part element="impl:importApplicationArchive" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="previewApplicationArchiveRequest">
+
+      <wsdl:part element="impl:previewApplicationArchive" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getApplicationsSubsetResponse">
+
+      <wsdl:part element="impl:getApplicationsSubsetResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getApplicationStatusRequest">
+
+      <wsdl:part element="impl:getApplicationStatus" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="importApplicationArchiveDocumentRequest">
+
+      <wsdl:part element="impl:importApplicationArchiveDocument" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ApplicationNotFoundException">
+
+      <wsdl:part element="impl:ApplicationNotFoundException" name="ApplicationNotFoundException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getApplicationsResponse">
+
+      <wsdl:part element="impl:getApplicationsResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeApplicationResponse">
+
+      <wsdl:part element="impl:removeApplicationResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getApplicationStatusResponse">
+
+      <wsdl:part element="impl:getApplicationStatusResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="previewApplicationArchiveResponse">
+
+      <wsdl:part element="impl:previewApplicationArchiveResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeApplicationRequest">
+
+      <wsdl:part element="impl:removeApplication" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getApplicationResponse">
+
+      <wsdl:part element="impl:getApplicationResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getApplicationRequest">
+
+      <wsdl:part element="impl:getApplication" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="importApplicationArchiveResponse">
+
+      <wsdl:part element="impl:importApplicationArchiveResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getApplicationsRequest">
+
+      <wsdl:part element="impl:getApplications" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="importApplicationArchiveDocumentWithImportApplicationInfoRequest">
+
+      <wsdl:part element="impl:importApplicationArchiveDocumentWithImportApplicationInfo" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ApplicationManager">
+
+      <wsdl:operation name="previewApplicationArchive">
+
+         <wsdl:input message="impl:previewApplicationArchiveRequest" name="previewApplicationArchiveRequest"/>
+
+         <wsdl:output message="impl:previewApplicationArchiveResponse" name="previewApplicationArchiveResponse"/>
+
+         <wsdl:fault message="impl:ApplicationManagerException" name="ApplicationManagerException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="previewApplicationArchiveDocument">
+
+         <wsdl:input message="impl:previewApplicationArchiveDocumentRequest" name="previewApplicationArchiveDocumentRequest"/>
+
+         <wsdl:output message="impl:previewApplicationArchiveDocumentResponse" name="previewApplicationArchiveDocumentResponse"/>
+
+         <wsdl:fault message="impl:ApplicationManagerException" name="ApplicationManagerException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="importApplicationArchive">
+
+         <wsdl:input message="impl:importApplicationArchiveRequest" name="importApplicationArchiveRequest"/>
+
+         <wsdl:output message="impl:importApplicationArchiveResponse" name="importApplicationArchiveResponse"/>
+
+         <wsdl:fault message="impl:ApplicationManagerException" name="ApplicationManagerException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="importApplicationArchiveDocument">
+
+         <wsdl:input message="impl:importApplicationArchiveDocumentRequest" name="importApplicationArchiveDocumentRequest"/>
+
+         <wsdl:output message="impl:importApplicationArchiveDocumentResponse" name="importApplicationArchiveDocumentResponse"/>
+
+         <wsdl:fault message="impl:ApplicationManagerException" name="ApplicationManagerException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="importApplicationArchiveDocumentWithImportApplicationInfo">
+
+         <wsdl:input message="impl:importApplicationArchiveDocumentWithImportApplicationInfoRequest" name="importApplicationArchiveDocumentWithImportApplicationInfoRequest"/>
+
+         <wsdl:output message="impl:importApplicationArchiveDocumentWithImportApplicationInfoResponse" name="importApplicationArchiveDocumentWithImportApplicationInfoResponse"/>
+
+         <wsdl:fault message="impl:ApplicationManagerException" name="ApplicationManagerException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeApplication">
+
+         <wsdl:input message="impl:removeApplicationRequest" name="removeApplicationRequest"/>
+
+         <wsdl:output message="impl:removeApplicationResponse" name="removeApplicationResponse"/>
+
+         <wsdl:fault message="impl:ApplicationNotFoundException" name="ApplicationNotFoundException"/>
+
+         <wsdl:fault message="impl:ApplicationManagerException" name="ApplicationManagerException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getApplicationStatus">
+
+         <wsdl:input message="impl:getApplicationStatusRequest" name="getApplicationStatusRequest"/>
+
+         <wsdl:output message="impl:getApplicationStatusResponse" name="getApplicationStatusResponse"/>
+
+         <wsdl:fault message="impl:ApplicationNotFoundException" name="ApplicationNotFoundException"/>
+
+         <wsdl:fault message="impl:ApplicationManagerException" name="ApplicationManagerException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getApplication">
+
+         <wsdl:input message="impl:getApplicationRequest" name="getApplicationRequest"/>
+
+         <wsdl:output message="impl:getApplicationResponse" name="getApplicationResponse"/>
+
+         <wsdl:fault message="impl:ApplicationNotFoundException" name="ApplicationNotFoundException"/>
+
+         <wsdl:fault message="impl:ApplicationManagerException" name="ApplicationManagerException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getApplications">
+
+         <wsdl:input message="impl:getApplicationsRequest" name="getApplicationsRequest"/>
+
+         <wsdl:output message="impl:getApplicationsResponse" name="getApplicationsResponse"/>
+
+         <wsdl:fault message="impl:ApplicationManagerException" name="ApplicationManagerException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getApplicationsSubset">
+
+         <wsdl:input message="impl:getApplicationsSubsetRequest" name="getApplicationsSubsetRequest"/>
+
+         <wsdl:output message="impl:getApplicationsSubsetResponse" name="getApplicationsSubsetResponse"/>
+
+         <wsdl:fault message="impl:ApplicationManagerException" name="ApplicationManagerException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ApplicationManagerSoapBinding" type="impl:ApplicationManager">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="previewApplicationArchive">
+
+         <wsdlsoap:operation soapAction="previewApplicationArchive..9.0.0"/>
+
+         <wsdl:input name="previewApplicationArchiveRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="previewApplicationArchiveResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApplicationManagerException">
+
+            <wsdlsoap:fault name="ApplicationManagerException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="previewApplicationArchiveDocument">
+
+         <wsdlsoap:operation soapAction="previewApplicationArchiveDocument..9.0.0"/>
+
+         <wsdl:input name="previewApplicationArchiveDocumentRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="previewApplicationArchiveDocumentResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApplicationManagerException">
+
+            <wsdlsoap:fault name="ApplicationManagerException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="importApplicationArchive">
+
+         <wsdlsoap:operation soapAction="importApplicationArchive..9.0.0"/>
+
+         <wsdl:input name="importApplicationArchiveRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="importApplicationArchiveResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApplicationManagerException">
+
+            <wsdlsoap:fault name="ApplicationManagerException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="importApplicationArchiveDocument">
+
+         <wsdlsoap:operation soapAction="importApplicationArchiveDocument..9.0.0"/>
+
+         <wsdl:input name="importApplicationArchiveDocumentRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="importApplicationArchiveDocumentResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApplicationManagerException">
+
+            <wsdlsoap:fault name="ApplicationManagerException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="importApplicationArchiveDocumentWithImportApplicationInfo">
+
+         <wsdlsoap:operation soapAction="importApplicationArchiveDocumentWithImportApplicationInfo..9.0.0"/>
+
+         <wsdl:input name="importApplicationArchiveDocumentWithImportApplicationInfoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="importApplicationArchiveDocumentWithImportApplicationInfoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApplicationManagerException">
+
+            <wsdlsoap:fault name="ApplicationManagerException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeApplication">
+
+         <wsdlsoap:operation soapAction="removeApplication..9.0.0"/>
+
+         <wsdl:input name="removeApplicationRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeApplicationResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApplicationNotFoundException">
+
+            <wsdlsoap:fault name="ApplicationNotFoundException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ApplicationManagerException">
+
+            <wsdlsoap:fault name="ApplicationManagerException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getApplicationStatus">
+
+         <wsdlsoap:operation soapAction="getApplicationStatus..9.0.0"/>
+
+         <wsdl:input name="getApplicationStatusRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getApplicationStatusResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApplicationNotFoundException">
+
+            <wsdlsoap:fault name="ApplicationNotFoundException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ApplicationManagerException">
+
+            <wsdlsoap:fault name="ApplicationManagerException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getApplication">
+
+         <wsdlsoap:operation soapAction="getApplication..9.0.0"/>
+
+         <wsdl:input name="getApplicationRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getApplicationResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApplicationNotFoundException">
+
+            <wsdlsoap:fault name="ApplicationNotFoundException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ApplicationManagerException">
+
+            <wsdlsoap:fault name="ApplicationManagerException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getApplications">
+
+         <wsdlsoap:operation soapAction="getApplications..9.0.0"/>
+
+         <wsdl:input name="getApplicationsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getApplicationsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApplicationManagerException">
+
+            <wsdlsoap:fault name="ApplicationManagerException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getApplicationsSubset">
+
+         <wsdlsoap:operation soapAction="getApplicationsSubset..9.0.0"/>
+
+         <wsdl:input name="getApplicationsSubsetRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getApplicationsSubsetResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApplicationManagerException">
+
+            <wsdlsoap:fault name="ApplicationManagerException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ApplicationManagerService">
+
+      <wsdl:port binding="impl:ApplicationManagerSoapBinding" name="ApplicationManager">
+
+         <wsdlsoap:address location="http://dev.ew.local:8080/soap/services/ApplicationManager"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
