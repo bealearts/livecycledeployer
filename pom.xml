@@ -9,7 +9,7 @@
 
 	<name>LiveCycle Deployer</name>
 	<description>Tools to automate the deployment of an Adobe LiveCycle Archive (LCA) to a LiveCycle Server.</description>
-	<url>http://code.google.com/p/livecycledeployer/</url>
+	<url>https://github.com/bealearts/livecycledeployer/</url>
 
 	<parent>
 		<groupId>org.sonatype.oss</groupId>
